@@ -4,6 +4,9 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
+import com.sapient.dao.BankDaoImpl;
+import com.sapient.dao.IBankDao;
+
 public class CustomerUtil {
 
 	private static ResourceBundle bundle;
@@ -38,6 +41,9 @@ public class CustomerUtil {
 	/**
 	 * getting the instance of BankDaoImpl in Ibank dao object
 	 */
-	
+	public static IBankDao getDaoInstance() {
+		IBankDao ibdao = new BankDaoImpl();
+		return ibdao;
+	}
 
 }

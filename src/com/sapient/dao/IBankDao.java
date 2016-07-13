@@ -3,6 +3,8 @@ package com.sapient.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.sapient.exception.IdExcepetion;
+import com.sapient.exception.NotFoundException;
 import com.sapient.vo.*;
 
 public interface IBankDao {
@@ -15,7 +17,7 @@ public interface IBankDao {
 
 	Account viewAcc(long accNo);
 
-	List<Transaction> viewTrans(long custAccNo);
+	List<Transaction> viewTrans(long custAccNo) throws NotFoundException;
 
 	List<Transaction> viewTrans(long custAccNo, Date startDate, Date endDate);
 
