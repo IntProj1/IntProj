@@ -74,9 +74,37 @@ public class BankDaoImpl extends DBConnection implements IBankDao {
 	}
 
 	@Override
-	public List<Transaction> viewTrans(long custAccNo, Date startDate, Date endDate) {
+	public List<Transaction> viewTrans(long custAccNo, Date startDate, Date endDate) throws NotFoundException {
+		List<Transaction> translst = new ArrayList<Transaction>();
+		Connection conn = getCon();
+		Transaction trans = null;
+		try {
+			PreparedStatement st = conn.prepareStatement(Queries.viewTransListbyDate);
+			st.setLong(1, custAccNo);
+			st.setDate(2, new java.sql.Date(startDate.getTime()));
+			st.setDate(3, new java.sql.Date(endDate.getTime()));
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				CustomerUtil.viewLogger().trace("row found");
+				trans = new Transaction();
+				trans.setTransSrcaccno(rs.getLong("acno"));
+				trans.setTransAmt(rs.getLong("amt"));
+				trans.setTransType(rs.getString("transt"));
+				trans.setTransId(rs.getLong("transid"));
+				trans.setTransDestaccno(rs.getLong("destacno"));
+				trans.setTransDate(rs.getDate("transd"));
+				translst.add(trans);
+			}
+			CustomerUtil.viewLogger().debug("size " + translst.size());
+		} catch (SQLException e) {
+			CustomerUtil.viewLogger().error(e.getMessage());
+		} finally {
+			closeCon(conn);
+		}
 
-		return null;
+		if (translst.size() == 0)
+			throw new NotFoundException("No transaction Found");
+		return translst;
 	}
 
 	@Override
