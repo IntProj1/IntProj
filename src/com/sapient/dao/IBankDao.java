@@ -21,7 +21,7 @@ public interface IBankDao {
 
 	List<Transaction> viewTrans(long custAccNo, Date startDate, Date endDate) throws NotFoundException;
 
-	int updateBal(long custAccNo, long transAmt, String transType);
+	int updateBal(long custAccNo, long transAmt, String transType) throws NotFoundException;
 
 	int createAcc(Account newAccObj);
 

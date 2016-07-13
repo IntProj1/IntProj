@@ -108,8 +108,25 @@ public class BankDaoImpl extends DBConnection implements IBankDao {
 	}
 
 	@Override
-	public int updateBal(long custAccNo, long transAmt, String transType) {
-
+	public int updateBal(long custAccNo, long transAmt, String transType) throws NotFoundException {
+		int i = 1;
+		if ("DEBIT".equals(transType.toUpperCase()))
+			i = -1;
+		Connection conn = getCon();
+		try {
+			PreparedStatement st = conn.prepareStatement(Queries.balUpdate);
+			st.setInt(1, i);
+			st.setLong(2, transAmt);
+			st.setLong(3, custAccNo);
+			CustomerUtil.viewLogger().trace("binded parameters to query");
+			int row = st.executeUpdate();
+			CustomerUtil.viewLogger().debug(row + "bal updated");
+		} catch (SQLException ex) {
+			CustomerUtil.viewLogger().error(ex.getMessage());
+			throw new NotFoundException("Account not found");
+		} finally {
+			closeCon(conn);
+		}
 		return 0;
 	}
 
