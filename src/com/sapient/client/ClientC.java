@@ -9,7 +9,7 @@ public class ClientC {
 	public static void main(String[] args) {
 		IBankDao dao = CustomerUtil.getDaoInstance();
 		try {
-			int res = dao.updateBal(12345678910l, 100l, "DEBIT");
+			int res = dao.updateBal(12345678910l, 100l, "CREDIT");
 			CustomerUtil.viewLogger().info("bal updated");
 		} catch (NotFoundException e) {
 			CustomerUtil.viewLogger().info(e.getMessage());
