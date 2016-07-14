@@ -1,4 +1,4 @@
-package com.sapient.exception;
+package com.sapient.exceptions;
 
 public class IdExcepetion extends Exception {
 	/**

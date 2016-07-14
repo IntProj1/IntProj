@@ -3,7 +3,7 @@ package com.sapient.client;
 import java.util.List;
 
 import com.sapient.dao.IBankDao;
-import com.sapient.exception.NotFoundException;
+import com.sapient.exceptions.NotFoundException;
 import com.sapient.util.CustomerUtil;
 import com.sapient.vo.Transaction;
 
@@ -15,7 +15,7 @@ public class ClientA {
 			for (Transaction tr : lst) {
 				System.out.println(tr);
 			}
-		} catch (NotFoundException e) {
+		} catch (com.sapient.exceptions.NotFoundException e) {
 			CustomerUtil.viewLogger().info(e.getMessage());
 		}
 	}

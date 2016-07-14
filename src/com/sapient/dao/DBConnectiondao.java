@@ -12,7 +12,7 @@ import com.sapient.util.CustomerUtil;
  * @author ktrip5
  *
  */
-public class DBConnection {
+public class DBConnectiondao {
 
 	static {
 		String driver = CustomerUtil.getBundle().getString("driver");

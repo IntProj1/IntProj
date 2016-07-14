@@ -7,6 +7,15 @@ public class Account {
 
 	private List<Transaction> transLst = null;
 	private long accNo;
+	private long cid;
+	public long getCid() {
+		return cid;
+	}
+
+	public void setCid(long cid) {
+		this.cid = cid;
+	}
+
 	private String accType;
 	private long accBal;
 	private String accIfsc;

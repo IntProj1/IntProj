@@ -1,10 +1,17 @@
-package com.sapient.exception;
+package com.sapient.exceptions;
 
 public class NotFoundException extends Exception {
 
+	/**
+	 * This exception raised when employee is not found
+	 * 
+	 * @author ktrip5
+	 * @version 1.0
+	 */
+
 	public NotFoundException() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public NotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {

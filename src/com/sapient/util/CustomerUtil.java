@@ -38,9 +38,12 @@ public class CustomerUtil {
 		return logger;
 
 	}
+
 	/**
 	 * getting the instance of BankDaoImpl in Ibank dao object
 	 */
+
+	
 	public static IBankDao getDaoInstance() {
 		IBankDao ibdao = new BankDaoImpl();
 		return ibdao;
